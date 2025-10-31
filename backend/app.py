@@ -9,7 +9,7 @@ import pandas as pd
 
 from pathlib import Path
 
-from forecast_model import (
+from .forecast_model import (
     ensure_model,
     forecast,
     forecast_to_json,
@@ -82,7 +82,7 @@ def predict() -> Any:
 
             model = ensure_model(data_path=None)  # model structure; we will fit on df instead
             # Train directly on provided df
-            from forecast_model import train_model
+            from .forecast_model import train_model
 
             model = train_model(df)
             fcst_df = forecast(model, periods=periods, last_date=df["ds"].max())
@@ -108,7 +108,7 @@ from typing import Any, Dict
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-from forecast_model import ensure_model, forecast, forecast_to_json, load_sales_data, save_model, train_model
+from .forecast_model import ensure_model, forecast, forecast_to_json, load_sales_data, save_model, train_model
 
 
 app = Flask(__name__)
