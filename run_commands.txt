@@ -1,0 +1,49 @@
+# --- Setup Environment ---
+python3 -m venv venv
+source venv/bin/activate
+# OR on Windows: venv\Scripts\activate
+
+# --- Install Dependencies ---
+pip install -r requirements.txt
+
+# --- Run Backend (API) ---
+cd backend
+python app.py
+
+# --- Run Dashboard ---
+cd ../dashboard
+python app.py
+
+# --- Optional: Schedule Auto-Training ---
+cd ../cron_jobs
+python auto_refresh.py
+
+# --- Production (Gunicorn) ---
+# Backend: gunicorn app:app --chdir backend --bind 0.0.0.0:$PORT
+# Dashboard: gunicorn app:server --chdir dashboard --bind 0.0.0.0:$PORT
+
+# --- Deploy on Render ---
+# 1) Push repo to GitHub
+# 2) In Render, "New +" -> "Blueprint" -> select this repo
+# 3) Render detects render.yaml and creates two web services
+# 4) Deploy; open the two URLs (API and Dashboard)
+
+# --- Setup Environment ---
+python3 -m venv venv
+source venv/bin/activate  # OR on Windows: venv\Scripts\activate
+
+# --- Install Dependencies ---
+pip install -r requirements.txt
+
+# --- Run Backend (API) ---
+cd backend
+python app.py
+
+# --- Run Dashboard ---
+cd ../dashboard
+python app.py
+
+# --- Optional: Schedule Auto-Training ---
+cd ../cron_jobs
+python auto_refresh.py
+
